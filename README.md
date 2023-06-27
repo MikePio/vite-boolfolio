@@ -429,3 +429,100 @@ create(App).mount('#app');
 --------------------------------------
 
 ## **FINE VUE**
+
+# **Installazione Axios**
+```
+npm i axios 
+```
+
+# **Creare una cartella vite + vue (sass/scss + axios + bootstrap)** 
+## ***(senza laravel e breeze)**
+
+METODO 1
+
+npm create vite@latest nome-progetto -- --template vue
+---------------------------------------
+cd nome-progetto
+---------------------------------------
+sass/scss 
+
+comando migliore
+npm add -D sass
+comando peggiore (anche così funziona)
+npm i sass
+---------------------------------------
+axios
+
+npm i axios
+---------------------------------------
+bootstrap
+
+npm i bootstrap
+
+#### NEL FILE GENERALE/ NEL FILE NECESSARIO
+@import 'bootstrap/scss/bootstrap';
+-------------------------------------
+npm i
+---------------------------------------
+npm run dev
+
+-----------------------------------
+aggiungere in App.vue
+
+<style lang="scss">
+
+@use './scss/main.scss';
+
+</style>
+
+////////////////////////////////////////
+
+METODO 2
+
+Creazione di una cartella tramite linea di comando
+(terminale/powershell)
+
+1. Con i comandi del terminale entro nella cartella dove devo creare la repo
+Creo una cartella con il nome della repo:
+
+npm create vite@latest nomeDellaRepo
+
+2. Seleziono come framework Vue
+
+3. Seleziono come "variant" JavaScript
+
+---------------------------------------
+*SE NECESSARIO
+
+SASS
+
+npm add -D sass
+---------------------------------------
+
+AXIOS
+
+npm i axios
+-------------------------------------
+Bootstrap
+
+npm i bootstrap
+
+#### NEL FILE GENERALE/ NEL FILE NECESSARIO
+@import 'bootstrap/scss/bootstrap';
+-------------------------------------
+
+4. Apro la cartella in VsCode e nel terminale (CTRL+J) digito -> npm install
+
+Dopo aver installato tutte le "dipendenze" digito -> npm run dev
+
+5. Nella cartella 'src' si trova il file 'App.vue' che va svuotato dal suo contenuto.
+Una volta fatto digitare "with" per ottenere la scorciatoia del nostro
+snippet.
+
+6. aggiungere in App.vue
+
+<style lang="scss">
+
+@use './scss/main.scss';
+
+</style>
