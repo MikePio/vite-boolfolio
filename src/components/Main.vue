@@ -12,7 +12,9 @@ export default {
 
 <template>
   <main>
+
     <h1>MAIN</h1>
+    
   </main>
 </template>
 

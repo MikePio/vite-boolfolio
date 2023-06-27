@@ -12,10 +12,9 @@ export default {
 
 <template>
   <header>
-    <div class="container">
-    <h1>HEADER</h1>
 
-    </div>
+    <h1>HEADER</h1>
+    
   </header>
 </template>
 
@@ -23,10 +22,7 @@ export default {
 @use '../scss/main.scss' as *;
 
 header{
-  h1{
-    color: red;
 
-  }
 }
 
 </style>

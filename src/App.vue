@@ -1,6 +1,6 @@
 <script>
 import axios from "axios"
-import { store } from "./data/store"
+import { store } from "./data/store/store"
 import Header from './components/Header.vue'
 import Main from './components/Main.vue'
 import Footer from './components/Footer.vue'
@@ -12,18 +12,33 @@ export default {
     Main,
     Footer
   },
-  data(){
-    return{
-      store
+  methods:{
+    getApi(){
+      //* collegamento all'url dell'api salvata nello store
+      // console.log(store.apiUrl); // restituisce l'url salvato nello store nella console
+      
+      //* chiamata Api per restituire tutti i progetti salvati nel db della repo laravel-api
+      axios.get(store.apiUrl + 'projects')
+        .then(results => {
+          console.log(results.data);
+        });
+      
     }
+  },
+  mounted(){
+    // richiamo getApi() quando viene costruita/montata la pagina
+    this.getApi();
   }
+
 }
 </script>
 
 <template>
-  <Header/>
-  <Main/>
-  <Footer/>
+  <div>
+    <Header/>
+    <Main/>
+    <Footer/>
+  </div>
 </template>
 
 <style lang='scss'>
