@@ -18,13 +18,13 @@ export default {
         <!-- Section: Social media -->
         <section class="mb-4">
             <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+            <a style="padding: 7px 15px;" class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-google"></i></a>
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="#!" role="button"><i class="fab fa-google"></i></a>
 
             <!-- Instagram -->
             <a class="btn btn-outline-light btn-floating m-1 rounded-circle"

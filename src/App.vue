@@ -32,7 +32,7 @@ export default {
           
           // i dati ottenuti(results.data) vengono pushati nell'array projects
           this.projects = results.data;
-          console.log(this.projects);
+          // console.log(this.projects);
       });
       
     }

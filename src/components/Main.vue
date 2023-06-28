@@ -6,6 +6,7 @@ export default {
   name: 'Main',
   data(){
     return{
+      projects:[]
 
     }
   },
@@ -25,12 +26,20 @@ export default {
           console.log(this.projects);
       });
       
+    },
+
+    // funzione per cambiare la formattazione dell'orario in base alla posizione
+    formatData(dateString){
+      const d = new Date(dateString);
+      console.log(d);
+      return d.toLocaleDateString();
     }
   },
 
   mounted(){
     // richiamo getApi() quando viene costruita/montata la pagina
     this.getApi();
+
   }
 }
 </script>
@@ -42,8 +51,9 @@ export default {
     <h2 class="mb-4">Project list</h2>
 
     <ul>
-      <li class="mb-3" v-for="project in projects" :key="project.id">{{ project.name }}</li>
+      <li class="mb-3" v-for="project in projects" :key="project.id"><strong>Name:</strong> {{ project.name }} - <strong>Start date:</strong> {{ formatData(project.start_date) }} - <strong>End date:</strong> {{ formatData(project.end_date) }}</li>
     </ul>
+
   
   </main>
 </template>
