@@ -7,11 +7,19 @@ import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
+
   components:{
     Header,
     Main,
     Footer
   },
+
+  data(){
+    return{
+      projects:[]
+    }
+  },
+
   methods:{
     getApi(){
       //* collegamento all'url dell'api salvata nello store
@@ -20,11 +28,16 @@ export default {
       //* chiamata Api per restituire tutti i progetti salvati nel db della repo laravel-api
       axios.get(store.apiUrl + 'projects')
         .then(results => {
-          console.log(results.data);
-        });
+          // console.log(results.data); // restituisce i dati dell'api in console
+          
+          // i dati ottenuti(results.data) vengono pushati nell'array projects
+          this.projects = results.data;
+          console.log(this.projects);
+      });
       
     }
   },
+
   mounted(){
     // richiamo getApi() quando viene costruita/montata la pagina
     this.getApi();

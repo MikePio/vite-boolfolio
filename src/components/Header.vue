@@ -11,18 +11,17 @@ export default {
 </script>
 
 <template>
-  <header>
+<header class="bg-dark text-center text-white" >
 
-    <h1>HEADER</h1>
-    
-  </header>
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+    <h1>Boolfolio</h1>
+  </div>
+
+</header>
 </template>
 
 <style lang="scss" scoped>
 @use '../scss/main.scss' as *;
 
-header{
-
-}
 
 </style>
