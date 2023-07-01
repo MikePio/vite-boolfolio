@@ -12,18 +12,24 @@ export default {
   },
 
   methods:{
-    getApi(){
+    getApi(endpoint){
       //* collegamento all'url dell'api salvata nello store
       // console.log(store.apiUrl); // restituisce l'url salvato nello store nella console
       
       //* chiamata Api per restituire tutti i progetti salvati nel db della repo laravel-api
-      axios.get(store.apiUrl + 'projects')
+      axios.get(endpoint)
         .then(results => {
           // console.log(results.data); // restituisce i dati dell'api in console
           
-          // i dati ottenuti(results.data) vengono pushati nell'array projects
-          this.projects = results.data;
-          console.log(this.projects);
+          // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
+          // this.projects = results.data;
+          //! con la paginazione
+          this.projects = results.data.data;
+          // console.log(this.projects);
+
+          // utilizzati per creare i pulsanti per la navigazione
+          this.links = results.data.links;
+          // console.log(this.links);
       });
       
     },
@@ -38,7 +44,7 @@ export default {
 
   mounted(){
     // richiamo getApi() quando viene costruita/montata la pagina
-    this.getApi();
+    this.getApi(store.apiUrl + 'projects');
 
   }
 }
@@ -53,6 +59,10 @@ export default {
     <ul>
       <li class="mb-3" v-for="project in projects" :key="project.id"><strong>Name:</strong> {{ project.name }} - <strong>Start date:</strong> {{ formatData(project.start_date) }} - <strong>End date:</strong> {{ formatData(project.end_date) }}</li>
     </ul>
+
+    <div>
+      <button v-for="(link, index) in links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4" ></button>
+    </div>
 
   
   </main>
