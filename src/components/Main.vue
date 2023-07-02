@@ -6,8 +6,12 @@ export default {
   name: 'Main',
   data(){
     return{
-      projects:[]
-
+      projects:[],
+      links:[],
+      first_page_url: null,
+      last_page_url: null,
+      current_page:null,
+      last_page:null,
     }
   },
 
@@ -30,6 +34,11 @@ export default {
           // utilizzati per creare i pulsanti per la navigazione
           this.links = results.data.links;
           // console.log(this.links);
+          this.first_page_url = results.data.first_page_url;
+          this.last_page_url = results.data.last_page_url;
+          this.current_page = results.data.current_page;
+          this.last_page = results.data.last_page;
+
       });
       
     },
@@ -37,7 +46,7 @@ export default {
     // funzione per cambiare la formattazione dell'orario in base alla posizione
     formatData(dateString){
       const d = new Date(dateString);
-      console.log(d);
+      // console.log(d);
       return d.toLocaleDateString();
     }
   },
@@ -61,7 +70,9 @@ export default {
     </ul>
 
     <div>
-      <button v-for="(link, index) in links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4" ></button>
+      <button @click="getApi(first_page_url)" :disabled="current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
+      <button v-for="(link, index) in links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>
+      <button @click="getApi(last_page_url)" :disabled="current_page == last_page" class="btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
     </div>
 
   
