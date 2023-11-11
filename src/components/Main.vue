@@ -66,7 +66,26 @@ export default {
     <h2 class="mb-4">Project list</h2>
 
     <ul>
-      <li class="mb-3" v-for="project in projects" :key="project.id"><strong>Name:</strong> {{ project.name }} - <strong>Start date:</strong> {{ formatData(project.start_date) }} - <strong>End date:</strong> {{ formatData(project.end_date) }}</li>
+      <li class="mb-3" v-for="project in projects" :key="project.id"><strong>Name:</strong> {{ project.name }} 
+      <!-- //* one to many -->
+      - <strong>Type: </strong>{{ project.type?.name ?? 'No type' }}  
+      <!-- //* many to many -->
+      - <strong>Technologies: </strong> 
+      <!-- //* lunga ma + semplice - soluzione 1 - stampare le tecnologie suddivise da uno spazio vuoto  -->
+      <span v-if="project.technologies && project.technologies.length > 0">
+        <span v-for="technology in project.technologies" :key="technology.id">&nbsp;{{ technology.name }}</span>
+      </span>
+      <span v-else>No technology</span>
+      <!-- //* breve ma più difficile - soluzione 2 - con MAP stampare le tecnologie suddivise da uno spazio vuoto  -->
+      <!-- <span> -->
+        <!-- {{ project.technologies.length > 0 ? project.technologies.map(technology => technology.name).join(' ') : 'No technology' }} -->
+      <!-- </span> -->
+      <!-- //* stampare le tecnologie con la virgola  -->
+      <!-- <span>
+        {{ project.technologies.length > 0 ? project.technologies.map(tech => tech.name).join(', ') : 'No technology' }}
+      </span> -->
+      - <strong>Start date:</strong> {{ formatData(project.start_date) }} 
+      - <strong>End date:</strong> {{ formatData(project.end_date) }}</li>
     </ul>
 
     <div>
