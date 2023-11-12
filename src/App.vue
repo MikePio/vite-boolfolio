@@ -1,17 +1,26 @@
 <script>
+
+import Header from './components/partials/Header.vue'
+import Main from './components/partials/Main.vue'
+import Footer from './components/partials/Footer.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+
+  components:{
+    Header,
+    Main,
+    Footer
+  },
+
 }
 </script>
 
 <template>
   <div>
-    <!-- <Header/> -->
-    
-    <router-view></router-view>
-
-    <!-- <Main/> -->
-    <!-- <Footer/> -->
+    <Header/>
+    <Main/>
+    <Footer/>
   </div>
 </template>
 
