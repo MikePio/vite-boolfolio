@@ -1,5 +1,7 @@
 **Laravel Boolfolio - Project Technology**
 ===
+# `1` esercizio/repo
+# **Laravel One To Many**
 ## **Descrizione esercizio precedente**
 Creare un nuovo progetto con Laravel Breeze ed il pacchetto Laravel 9 Preset con autenticazione.
 
@@ -8,8 +10,6 @@ Separare gli ambienti Guest da quelli Admin per quanto riguarda: stili, js, cont
 Infine creare la CRUD(Create, Read, Update e Delete) di un Portfolio.
 
 Include nella CRUD del portfolio l’aggiunta dell’immagine e la sua relativa eliminazione.
-
-# **Laravel One To Many**
 ## **Descrizione esercizio precedente**
 Continuare a lavorare su un progetto precedente (laravel-auth) ma in una nuova repo e aggiungere una nuova entità **Type**. 
 
@@ -27,7 +27,7 @@ I task da svolgere sono:
 Creare il seeder per il model Type e il seeder della tabella ‘projects’ con l’id del type (random) in relazione
 
 Aggiungere le operazioni CRUD per il model Type, in modo da gestire le tipologie di progetto direttamente dal pannello di amministrazione.
-
+# `2` repo
 # **Laravel Many To Many**
 ## **Descrizione esercizio precedente**
 
@@ -47,9 +47,11 @@ I task da svolgere sono:
 Creare il seeder per il model Technology e per la tabella pivot.
 
 Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
+# `3 - 4` esercizio/repo
+## **`vite-boolfolio` - `Laravel-api`**
+# **Laravel Boolfolio API**
 
-# **Laravel Boolfolio - API**
-## **Descrizione esercizio attuale da svolgere**
+## **Descrizione esercizio precedente**
 Continuare a lavorare su un progetto precedente (laravel-many-to-many) ma in una nuova repo (laravel-api). 
 
 **Milestone 1**
@@ -88,6 +90,16 @@ Creare un nuovo componente ProjectCard, che corrisponde ad una card per visualiz
 
 1. Gestire la paginazione dei risultati
 2. ‘Innestare’ vue all’interno del progetto Laravel e da lì fare la chiamata API
+
+---------------------------------------
+## **Descrizione esercizio attuale da svolgere**
+
+# Router Vue 
+Aggiungere il router a Vue e inserire un menu di navigazione fra le pagine.
+Solo una delle pagine farà la chiamata axios per stampare il portfolio.
+Aggiungere un elenco di bottoni per i tipi e le tecnologie, questi bottoni verranno stampati a seguito di chiamate axios dedicate.
+### BONUS
+Al click di un bottone per il tipo o per le tecnologie, nell’elenco dei progetti appariranno solo quelli di quel tipo o di quella tecnologia.
 
 ---------------------------------------
 
@@ -195,7 +207,7 @@ php artisan serve
 
 - Creare una cartella " admin " nelle view
 	- creare un file home.blade.php
-	- Copiare il CONTENUTO del file " dashboard.blade.pphp " ed incollare all'interno di " home.blade.php "
+	- Copiare il CONTENUTO del file " dashboard.blade.php " ed incollare all'interno di " home.blade.php "
 
 - Creare il controller Admin/DashboardController 
 	- php artisan make:controller Admin/DashboardController 

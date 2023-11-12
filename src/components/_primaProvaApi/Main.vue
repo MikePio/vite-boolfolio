@@ -1,6 +1,6 @@
 <script>
 import axios from "axios"
-import { store } from "../data/store/store"
+import { store } from "../../data/store/store"
 
 export default {
   name: 'Main',
@@ -99,6 +99,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@use '../scss/main.scss' as *;
+@use '../../scss/main.scss' as *;
 
 </style>
