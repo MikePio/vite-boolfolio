@@ -5,5 +5,12 @@ export const store = reactive({
   apiUrl: 'http://127.0.0.1:8000/api/',
   // apiUrl: 'http://127.0.0.1:8000/api/projects',
 
+  // per centralizzare i dati, nello store sono contenuti: 
+  projects:[],
+  links:[],
+  first_page_url: null,
+  last_page_url: null,
+  current_page:null,
+  last_page:null,
 
 })
