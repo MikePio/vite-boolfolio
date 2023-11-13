@@ -48,7 +48,23 @@ export default {
       const d = new Date(dateString);
       // console.log(d);
       return d.toLocaleDateString();
-    }
+    },
+    formattedData(dateString){
+        const d = new Date(dateString);
+        const options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        };
+        function getUserLocale(){
+            const userLocale = navigator.languages && navigator.languages.length
+                            ? navigator.languages[0]
+                            : navigator.language;
+            return userLocale;
+        }
+        return d.toLocaleString(getUserLocale(), options);
+    },
   },
 
   mounted(){
@@ -67,17 +83,19 @@ export default {
 
     <h2 class="text-center mb-4">Progetti</h2>
 
-    <ul>
-      <li class="mb-3" v-for="project in projects" :key="project.id"><strong>Name:</strong> {{ project.name }} 
+<!-- //* stampa una lista semplice -->
+    <!-- <ul> -->
+      <!-- <li class="mb-3" v-for="project in projects" :key="project.id"> -->
+      <!-- <strong>Name:</strong> {{ project.name }}  -->
       <!-- //* one to many -->
-      - <strong>Type: </strong>{{ project.type?.name ?? 'No type' }}  
+      <!-- - <strong>Type: </strong>{{ project.type?.name ?? 'No type' }}   -->
       <!-- //* many to many -->
-      - <strong>Technologies: </strong> 
+      <!-- - <strong>Technologies: </strong>  -->
       <!-- //* lunga ma + semplice - soluzione 1 - stampare le tecnologie suddivise da uno spazio vuoto  -->
-      <span v-if="project.technologies && project.technologies.length > 0">
+      <!-- <span v-if="project.technologies && project.technologies.length > 0">
         <span v-for="technology in project.technologies" :key="technology.id">&nbsp;{{ technology.name }}</span>
       </span>
-      <span v-else>No technology</span>
+      <span v-else>No technology</span> -->
       <!-- //* breve ma più difficile - soluzione 2 - con MAP stampare le tecnologie suddivise da uno spazio vuoto  -->
       <!-- <span> -->
         <!-- {{ project.technologies.length > 0 ? project.technologies.map(technology => technology.name).join(' ') : 'No technology' }} -->
@@ -86,9 +104,51 @@ export default {
       <!-- <span>
         {{ project.technologies.length > 0 ? project.technologies.map(tech => tech.name).join(', ') : 'No technology' }}
       </span> -->
-      - <strong>Start date:</strong> {{ formatData(project.start_date) }} 
-      - <strong>End date:</strong> {{ formatData(project.end_date) }}</li>
-    </ul>
+      <!-- - <strong>Start date:</strong> {{ formatData(project.start_date) }}  -->
+      <!-- - <strong>End date:</strong> {{ formatData(project.end_date) }} -->
+      <!-- </li> -->
+    <!-- </ul> -->
+
+<!-- //* stampa le card -->
+    <div class="container d-flex flex-wrap align-items-center justify-content-center my-4">
+      <div v-for="project in projects" :key="project.id" class="bg-white border border-dark overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 460px; max-width: 460px; height: 232px; max-height: 232px">
+          <div class="d-flex">
+            <div class="d-flex flex-column d-flex justify-content-center align-items-center">
+                <img 
+                :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
+                :alt="project.name"
+                class="rounded-start" style="object-fit: cover; height: 232px; width: 230px;">
+                <!-- //* funziona il placeholder statico  -->
+                <!-- src='../../assets/img/placeholder-img.png' -->
+            </div>
+            <div class="d-flex flex-column justify-content-start mx-2" style="height: 232px; width: 230px;">
+                <div class="my-2 text-start">
+                  <h5 class="mb-1">
+                    {{ project.name }}
+                  </h5>
+                  <p class="mb-1">
+                    {{ formattedData(project.start_date) }} 
+                  </p>
+                  <p class="badge badge-type mb-1 me-1">
+                    {{ project.type?.name ?? 'Nessuna tipologia' }} 
+                  </p>
+                  <div v-if="project.technologies && project.technologies.length > 0">
+                    <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies" :key="technology.id">&nbsp;{{ technology.name }}</span>
+                  </div>
+                  <div v-else>
+                    <span class="badge badge-technology mb-1 me-1">Nessuna tecnologia</span>
+                  </div>
+                  <!-- <div> -->
+                    <!-- {{ project.category ?? 'Nessuna categoria' }} -->
+                  <!-- </div> -->
+                  <!-- <div class="text-muted custom-card-text" style="width: 205px; height: 75px;"> -->
+                    <!-- {{ project.description }} -->
+                  <!-- </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div class="d-flex flex-column align-items-center justify-content-center">
       <div>
@@ -104,6 +164,16 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
+.badge-type{
+  // background-color: #1A1E21;
+  // background-color: #212529;
+  background-color: #272c31;
+  // background-color: #4338CA;
+}
 
+.badge-technology{
+  background-color:#bcbcbc;
+  // background-color: lightgray;
+}
 
 </style>
