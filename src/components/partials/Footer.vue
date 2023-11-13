@@ -62,7 +62,7 @@ export default {
     }
     &.active{
       text-shadow: 0 0 10px white;
-      // color: darken($color: white, $amount: 15%);
+      // color: darken($color: white, $amount: 30%);
     }
   }
 </style>
