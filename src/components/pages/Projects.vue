@@ -22,6 +22,7 @@ export default {
   },
 
   methods:{
+    //* Api per i progetti
     getApi(endpoint){
       //* collegamento all'url dell'api salvata nello store
       // console.log(store.apiUrl); // restituisce l'url salvato nello store nella console
@@ -48,6 +49,23 @@ export default {
       });
       
     },
+    //* Api per le tipologie
+    getTypesApi(){
+      axios.get(store.apiUrl + 'projects/types')
+        .then(results => {
+          store.types = results.data;
+          // console.log(results.data);
+        });
+    },
+    //* Api per le tecnologie
+    getTechnologiesApi(){
+      axios.get(store.apiUrl + 'projects/technologies')
+        .then(results => {
+          store.technologies = results.data;
+          // console.log(results.data);
+        });
+    },
+
 
 
   },
@@ -55,7 +73,8 @@ export default {
   mounted(){
     // richiamo getApi() quando viene costruita/montata la pagina
     this.getApi(store.apiUrl + 'projects');
-
+    this.getTypesApi();
+    this.getTechnologiesApi();
   }
 }
 </script>
@@ -67,6 +86,23 @@ export default {
   <div class="container-inner mx-auto">
 
     <h2 class="text-center mb-4">Progetti</h2>
+
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
+        <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+          <h3 class="text-center">Tipologie</h3>
+          <button v-for="type in store.types" :key="type.id" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
+            {{ type.name }}
+          </button>
+        </div>
+        <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+          <h3 class="text-center">Tecnologie</h3>
+          <button v-for="technology in store.technologies" :key="technology.id" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
+            {{ technology.name }}
+          </button>
+        </div>
+      </div>
+    </div>
 
 <!-- //* stampa una lista semplice -->
     <!-- <ul> -->
@@ -117,6 +153,31 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
+.badge-type{
+  // background-color: #1A1E21;
+  // background-color: #212529;
+  background-color: #272c31;
+  // background-color: #4338CA;
+  transition: all .3s;
+  &:hover{
+    border: #272c31 1px solid;
+  }
+}
+
+.badge-technology{
+  background-color:#bcbcbc;
+  // background-color: lightgray;
+      transition: all .3s;
+  &:hover{
+    border: #272c31 1px solid;
+  }
+}
+
+@media (max-width: 1229px) {
+  .mp-type-tech-container {
+    width: 505px;
+  }
+}
 
 
 </style>

@@ -28,22 +28,32 @@ export default {
         return d.toLocaleString(getUserLocale(), options);
     },
   },
+  computed:{
+    printType(){
+
+      if(!this.project.type) return 'Nessuna tipologia';
+
+      // scrivendo in questo modo le classi css devono essere negli stili generali (SCRIVENDO LE CLASSI E LO STYLE nei file generali IL SITO DIVENTA LENTISSIMO)
+      // return `<div class="badge badge-type mb-1 me-1">${this.project.type.name}</div>`;
+      return `<div>${this.project.type.name}</div>`;
+    }
+  },
 
 }
 </script>
 
 <template>
-        <div class="bg-white border border-dark overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 460px; max-width: 460px; height: 232px; max-height: 232px">
+        <div class="shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <div class="d-flex">
             <div class="d-flex flex-column d-flex justify-content-center align-items-center">
                 <img 
                 :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
                 :alt="project.name"
-                class="rounded-start" style="object-fit: cover; height: 232px; width: 230px;">
+                class="rounded-start" style="object-fit: cover; height: 232px; width: 280px;">
                 <!-- //* funziona il placeholder statico  -->
                 <!-- src='../../assets/img/placeholder-img.png' -->
             </div>
-            <div class="d-flex flex-column justify-content-start mx-2" style="height: 232px; width: 230px;">
+            <div class="d-flex flex-column justify-content-start mx-2" style="height: 232px; width: 225px;">
                 <div class="my-2 text-start">
                   <h5 class="mb-1">
                     {{ project.name }}
@@ -54,6 +64,8 @@ export default {
                   <p class="badge badge-type mb-1 me-1">
                     {{ project.type?.name ?? 'Nessuna tipologia' }} 
                   </p>
+                  <!-- oppure utilizzando una funzione-->
+                  <!-- <p class="badge badge-type mb-1 me-1" v-html="printType"></p> -->
                   <div v-if="project.technologies && project.technologies.length > 0">
                     <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies" :key="technology.id">&nbsp;{{ technology.name }}</span>
                   </div>
