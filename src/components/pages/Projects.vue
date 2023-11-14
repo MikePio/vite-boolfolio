@@ -32,7 +32,7 @@ export default {
         .then(results => {
           // console.log(results.data); // restituisce i dati dell'api in console
           
-          //* SOLUZIONE 1 chiamate api con più rotte
+          //* SOLUZIONE 1 chiamate api con più rotte // migliora la velocità del sito
           // // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
           // // store.projects = results.data;
           // //! con la paginazione
@@ -46,7 +46,7 @@ export default {
           // store.current_page = results.data.current_page;
           // store.last_page = results.data.last_page;
 
-          //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per i progetti, types, technologies - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api 
+          //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per i progetti, types, technologies - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api // http://127.0.0.1:8000/api/projects // peggiora la velocità del sito
           // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
           // store.projects = results.data; // o forse // store.projects = results.data.projects;
           //! con la paginazione
@@ -67,7 +67,7 @@ export default {
       });
       
     },
-    //* Api per le tipologie
+    //* chiamata Api per la rotta tipologie
     getTypesApi(){
       axios.get(store.apiUrl + 'projects/types')
         .then(results => {
@@ -75,7 +75,7 @@ export default {
           // console.log(results.data);
         });
     },
-    //* Api per le tecnologie
+    //* chiamata Api per la rotta tecnologie
     getTechnologiesApi(){
       axios.get(store.apiUrl + 'projects/technologies')
         .then(results => {
@@ -113,16 +113,26 @@ export default {
     <div class="d-flex flex-column align-items-center justify-content-center">
       <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
-          <h3 class="text-center">Tipologie</h3>
-          <button v-for="type in store.types" :key="type.id" @click="getProjectsByType(type.id)" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
-            {{ type.name }}
-          </button>
+          <h3 class="text-center mb-3">Tipologie</h3>
+          <div class="d-flex flex-wrap justify-content-center mx-3">
+            <button @click="getApi(store.apiUrl + 'projects')" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
+              Tutte le tipologie
+            </button>
+            <!-- //* usando la funzione personalizzata -->
+            <!-- <button v-for="type in store.types" :key="type.id" @click="getProjectsByType(type.id)" class="btn badge d-inline-block badge-type text-center mb-1 me-1"> -->
+            <!-- //* usando la funzione getApi con un parametro (si adegua alla soluzione 2 cioè una sola rotta per le chiamate api per i progetti, types, technologies) -->
+            <button v-for="type in store.types" :key="type.id" @click="getApi(store.apiUrl + 'projects/project-type/' + type.id)" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
+              {{ type.name }}
+            </button>
+          </div>
         </div>
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <h3 class="text-center">Tecnologie</h3>
-          <button v-for="technology in store.technologies" :key="technology.id" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
-            {{ technology.name }}
-          </button>
+            <div class="d-flex flex-wrap justify-content-center mx-3">
+            <button v-for="technology in store.technologies" :key="technology.id" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
+              {{ technology.name }}
+            </button>          
+          </div>
         </div>
       </div>
     </div>
