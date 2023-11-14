@@ -32,19 +32,37 @@ export default {
         .then(results => {
           // console.log(results.data); // restituisce i dati dell'api in console
           
-          // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
-          // store.projects = results.data;
-          //! con la paginazione
-          store.projects = results.data.data;
-          // console.log(store.projects);
+          //* SOLUZIONE 1 chiamate api con più rotte
+          // // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
+          // // store.projects = results.data;
+          // //! con la paginazione
+          // store.projects = results.data.data;
+          // // console.log(store.projects);
+          // // utilizzati per creare i pulsanti per la navigazione
+          // store.links = results.data.links;
+          // // console.log(store.links);
+          // store.first_page_url = results.data.first_page_url;
+          // store.last_page_url = results.data.last_page_url;
+          // store.current_page = results.data.current_page;
+          // store.last_page = results.data.last_page;
 
+          //* SOLUZIONE 2 Creata una sola rotta per le chiamate api per i progetti, types, technologies - nel controller passa in compact i dati (types e technologies) in modo da avere un unica rotta api 
+          // i dati ottenuti(results.data) vengono pushati nell'array projects //! SENZA la paginazione
+          // store.projects = results.data; // o forse // store.projects = results.data.projects;
+          //! con la paginazione
+          store.projects = results.data.projects.data;
+          // console.log(store.projects);
           // utilizzati per creare i pulsanti per la navigazione
-          store.links = results.data.links;
+          store.links = results.data.projects.links;
           // console.log(store.links);
-          store.first_page_url = results.data.first_page_url;
-          store.last_page_url = results.data.last_page_url;
-          store.current_page = results.data.current_page;
-          store.last_page = results.data.last_page;
+          store.first_page_url = results.data.projects.first_page_url;
+          store.last_page_url = results.data.projects.last_page_url;
+          store.current_page = results.data.projects.current_page;
+          store.last_page = results.data.projects.last_page;
+          //* types
+          store.types = results.data.types;
+          //* technologies
+          store.technologies = results.data.technologies;
 
       });
       
