@@ -65,6 +65,11 @@ export default {
           // console.log(results.data);
         });
     },
+    //* Api per la ricerca dei progetti al click di una tipologia
+    getProjectsByType(id){
+      this.getApi(store.apiUrl + 'projects/project-type/' + id);
+      // console.log(store.apiUrl + 'projects/project-type/' + id);
+    },
 
 
 
@@ -91,7 +96,7 @@ export default {
       <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <h3 class="text-center">Tipologie</h3>
-          <button v-for="type in store.types" :key="type.id" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
+          <button v-for="type in store.types" :key="type.id" @click="getProjectsByType(type.id)" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
             {{ type.name }}
           </button>
         </div>
