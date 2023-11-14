@@ -49,25 +49,29 @@ export default {
                 <img 
                 :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
                 :alt="project.name"
-                class="rounded-start" style="object-fit: cover; height: 232px; width: 280px;">
+                class="rounded-start" style="object-fit: cover; height: 230px; width: 280px;">
                 <!-- //* funziona il placeholder statico  -->
                 <!-- src='../../assets/img/placeholder-img.png' -->
             </div>
-            <div class="d-flex flex-column justify-content-start mx-2" style="height: 232px; width: 225px;">
+            <div class="d-flex flex-column justify-content-start mx-2" style="height: 230px; width: 225px;">
                 <div class="my-2 text-start">
                   <h5 class="mb-1">
                     {{ project.name }}
                   </h5>
-                  <p class="mb-1">
+                  <div class="text-sm">
+                    by <strong>{{ project.user.name }}</strong>
+                  </div>
+                  <div class="text-sm mb-1">
                     {{ formattedData(project.start_date) }} 
-                  </p>
+                  </div>
                   <p class="badge badge-type mb-1 me-1">
                     {{ project.type?.name ?? 'Nessuna tipologia' }} 
                   </p>
                   <!-- oppure utilizzando una funzione-->
                   <!-- <p class="badge badge-type mb-1 me-1" v-html="printType"></p> -->
                   <div v-if="project.technologies && project.technologies.length > 0">
-                    <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies" :key="technology.id">&nbsp;{{ technology.name }}</span>
+                    <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies.slice(0, 9)" :key="technology.id">&nbsp;{{ technology.name }}</span>
+                  <span v-if="project.technologies.length > 9" class="fw-bold">. . .</span>
                   </div>
                   <div v-else>
                     <span class="badge badge-technology mb-1 me-1">Nessuna tecnologia</span>
