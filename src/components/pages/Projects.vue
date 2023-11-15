@@ -88,7 +88,11 @@ export default {
       this.getApi(store.apiUrl + 'projects/project-type/' + id);
       // console.log(store.apiUrl + 'projects/project-type/' + id);
     },
-
+    //* Api per la ricerca dei progetti al click di una tecnologia
+    getProjectsByTechnology(id) {
+      this.getApi(store.apiUrl + 'projects/project-technology/' + id);
+      // console.log(store.apiUrl + 'projects/project-technology/' + id);
+    },
 
 
   },
@@ -129,9 +133,15 @@ export default {
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <h3 class="text-center">Tecnologie</h3>
             <div class="d-flex flex-wrap justify-content-center mx-3">
-            <button v-for="technology in store.technologies" :key="technology.id" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
-              {{ technology.name }}
-            </button>          
+              <button @click="getApi(store.apiUrl + 'projects')" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
+                Tutte le tecnologie
+              </button>
+                <!-- //* usando la funzione personalizzata -->
+                <!-- <button v-for="technology in store.technologies" :key="technology.id" @click="getProjectsByTechnology(technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1"> -->
+                <!-- //* usando la funzione getApi con un parametro (si adegua alla soluzione 2 cioè una sola rotta per le chiamate api per i progetti, types, technologies) -->
+                <button v-for="technology in store.technologies" :key="technology.id" @click="getApi(store.apiUrl + 'projects/project-technology/' + technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
+                  {{ technology.name }}
+                </button>          
           </div>
         </div>
       </div>
