@@ -33,7 +33,7 @@ export default {
 @use '../../scss/main.scss' as *;
 main{
   // todo da eliminare provvisorio
-  background-color: #4338CA;
+  // background-color: #4338CA;
 }
 
 </style>

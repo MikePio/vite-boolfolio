@@ -2,15 +2,17 @@
 import axios from "axios"
 import { store } from "../../data/store/store"
 import ProjectCard from "../partials/ProjectCard.vue"
+import Loader from "../partials/Loader.vue"
 
 export default {
   name: 'Projects',
   components:{
     ProjectCard,
+    Loader,
   },
   data(){
     return{
-      store
+      store,
       // per centralizzare i dati, nello store sono contenuti: 
       // projects:[],
       // links:[],
@@ -18,6 +20,9 @@ export default {
       // last_page_url: null,
       // current_page:null,
       // last_page:null,
+
+      //* per il caricamento/l'apparizione del loader
+      loaded: false
     }
   },
 
@@ -27,6 +32,9 @@ export default {
       //* collegamento all'url dell'api salvata nello store
       // console.log(store.apiUrl); // restituisce l'url salvato nello store nella console
       
+      //* per il caricamento/l'apparizione del loader
+      this.loaded = false;
+
       //* chiamata Api per restituire tutti i progetti salvati nel db della repo laravel-api
       axios.get(endpoint)
         .then(results => {
@@ -64,6 +72,8 @@ export default {
           //* technologies
           store.technologies = results.data.technologies;
 
+          //* per far scomparire il loader
+          this.loaded = true;
       });
       
     },
@@ -111,7 +121,6 @@ export default {
   <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-center"> -->
   <!-- oppure con mx-auto -->
   <div class="container-inner mx-auto">
-
     <h2 class="text-center mb-4">Progetti</h2>
 
     <div class="d-flex flex-column align-items-center justify-content-center">
@@ -136,12 +145,12 @@ export default {
               <button @click="getApi(store.apiUrl + 'projects')" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
                 Tutte le tecnologie
               </button>
-                <!-- //* usando la funzione personalizzata -->
-                <!-- <button v-for="technology in store.technologies" :key="technology.id" @click="getProjectsByTechnology(technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1"> -->
-                <!-- //* usando la funzione getApi con un parametro (si adegua alla soluzione 2 cioè una sola rotta per le chiamate api per i progetti, types, technologies) -->
-                <button v-for="technology in store.technologies" :key="technology.id" @click="getApi(store.apiUrl + 'projects/project-technology/' + technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
-                  {{ technology.name }}
-                </button>          
+              <!-- //* usando la funzione personalizzata -->
+              <!-- <button v-for="technology in store.technologies" :key="technology.id" @click="getProjectsByTechnology(technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1"> -->
+              <!-- //* usando la funzione getApi con un parametro (si adegua alla soluzione 2 cioè una sola rotta per le chiamate api per i progetti, types, technologies) -->
+              <button v-for="technology in store.technologies" :key="technology.id" @click="getApi(store.apiUrl + 'projects/project-technology/' + technology.id)" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
+                {{ technology.name }}
+              </button>          
           </div>
         </div>
       </div>
@@ -173,8 +182,10 @@ export default {
       <!-- </li> -->
     <!-- </ul> -->
 
+    <Loader v-if="!loaded"/>
+    
 <!-- //* stampa le card -->
-    <div class="container d-flex flex-wrap align-items-center justify-content-center my-4">
+    <div v-if="loaded" class="container d-flex flex-wrap align-items-center justify-content-center my-4">
       <ProjectCard 
         v-for="project in store.projects" 
         :key="project.id" 
@@ -182,7 +193,7 @@ export default {
       />
     </div>
 
-    <div class="d-flex flex-column align-items-center justify-content-center">
+    <div v-if="loaded" class="d-flex flex-column align-items-center justify-content-center">
       <div>
         <button @click="getApi(store.first_page_url)" :disabled="store.current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
         <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>

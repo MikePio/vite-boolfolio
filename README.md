@@ -1,6 +1,7 @@
 **Laravel Boolfolio - Project Technology**
 ===
 # `1` esercizio/repo
+## **`laravel-one-to-many`**
 # **Laravel One To Many**
 ## **Descrizione esercizio precedente**
 Creare un nuovo progetto con Laravel Breeze ed il pacchetto Laravel 9 Preset con autenticazione.
@@ -28,6 +29,7 @@ Creare il seeder per il model Type e il seeder della tabella ‘projects’ con 
 
 Aggiungere le operazioni CRUD per il model Type, in modo da gestire le tipologie di progetto direttamente dal pannello di amministrazione.
 # `2` repo
+## **`laravel-many-to-many`**
 # **Laravel Many To Many**
 ## **Descrizione esercizio precedente**
 
@@ -48,7 +50,7 @@ Creare il seeder per il model Technology e per la tabella pivot.
 
 Aggiungere le operazioni CRUD per il model Technology, in modo da gestire le tecnologie utilizzate nei progetti direttamente dal pannello di amministrazione.
 # `3 - 4` esercizio/repo
-## **`vite-boolfolio` - `Laravel-api`**
+## **`vite-boolfolio` - `laravel-api`**
 # **Laravel Boolfolio API**
 
 ## **Descrizione esercizio precedente**
@@ -92,14 +94,22 @@ Creare un nuovo componente ProjectCard, che corrisponde ad una card per visualiz
 2. ‘Innestare’ vue all’interno del progetto Laravel e da lì fare la chiamata API
 
 ---------------------------------------
-## **Descrizione esercizio attuale da svolgere**
-
 # Router Vue 
+
+## **Descrizione esercizio precedente**
 Aggiungere il router a Vue e inserire un menu di navigazione fra le pagine.
 Solo una delle pagine farà la chiamata axios per stampare il portfolio.
 Aggiungere un elenco di bottoni per i tipi e le tecnologie, questi bottoni verranno stampati a seguito di chiamate axios dedicate.
 ### BONUS
 Al click di un bottone per il tipo o per le tecnologie, nell’elenco dei progetti appariranno solo quelli di quel tipo o di quella tecnologia.
+
+---------------------------------------
+# Router vue 2 - Vue show
+
+## **Descrizione esercizio attuale da svolgere**
+Aggiungere alla navigazione con Vue anche la rotta che accetta lo slug come parametro dinamico e la relativa API del dettaglio dell’elemento cliccato
+### BONUS
+Piccolo motore di ricerca per nome
 
 ---------------------------------------
 
@@ -108,7 +118,7 @@ Al click di un bottone per il tipo o per le tecnologie, nell’elenco dei proget
 ## **Creare un progetto con Breeze integrato**
 
 
-1. 
+1. Primo comando nel terminale
 
 composer create-project --prefer-dist laravel/laravel:^9.2 nome_progetto
 
