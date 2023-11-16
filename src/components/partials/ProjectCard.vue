@@ -43,7 +43,8 @@ export default {
 </script>
 
 <template>
-        <div class="shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+      <div class="card-custom shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+        <router-link :to="{ name: 'projectDetail', params:{ slug: project.slug } }">
           <div class="d-flex">
             <div class="d-flex flex-column d-flex justify-content-center align-items-center">
                 <img 
@@ -70,7 +71,7 @@ export default {
                   <!-- oppure utilizzando una funzione-->
                   <!-- <p class="badge badge-type mb-1 me-1" v-html="printType"></p> -->
                   <div v-if="project.technologies && project.technologies.length > 0">
-                    <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies.slice(0, 9)" :key="technology.id">&nbsp;{{ technology.name }}</span>
+                    <span class="badge badge-technology mb-1 me-1" v-for="technology in project.technologies.slice(0, 9)" :key="technology.id">{{ technology.name }}</span>
                   <span v-if="project.technologies.length > 9" class="fw-bold">. . .</span>
                   </div>
                   <div v-else>
@@ -85,7 +86,8 @@ export default {
               </div>
             </div>
           </div>
-        </div>
+        </router-link>
+      </div>
 </template>
 
 <style lang="scss" scoped>
@@ -101,5 +103,36 @@ export default {
   background-color:#bcbcbc;
   // background-color: lightgray;
 }
+
+a{
+  text-decoration: none !important;
+  color: inherit; // colore ereditato
+  // stesso colore di
+  // color: #212529;
+  &:hover{
+    text-decoration: none !important;
+    color: inherit; // colore ereditato
+    // stesso colore di
+    // color: #212529;
+  }
+}
+
+.card-custom{
+  // transition: all .3s ease;
+  transition: transform 0.5s ease;
+  &:hover{
+    transform: scale(1.1);
+    //* per ingrandire l'immagine verticalmente all'hover
+    transition: transform 0.8s ease;
+    img{
+      // transform: scaleY(1.1);
+      // oppure
+      transform: scale(1.05);
+      border-radius: 5px !important;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+  }
+}
+
 
 </style>

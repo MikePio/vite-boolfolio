@@ -10,6 +10,7 @@ export const store = reactive({
   // apiUrl: 'http://127.0.0.1:8000/api/projects/technologies',
   // apiUrl: 'http://127.0.0.1:8000/api/projects/project-type/' + id',
   // apiUrl: 'http://127.0.0.1:8000/api/projects/project-technology/' + id',
+  // apiUrl: 'http://127.0.0.1:8000/api/projects + slug',
   //* rotta per la soluzione 2 cioè chiamate api con una sola rotta
   // apiUrl: 'http://127.0.0.1:8000/api/projects',
 
@@ -22,5 +23,7 @@ export const store = reactive({
   last_page:null,
   types:[],
   technologies:[],
+  // pagina di dettaglio del progetto
+  project:[],
 
 })

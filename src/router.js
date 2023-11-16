@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from './components/pages/Home.vue';
 import Contacts from './components/pages/Contacts.vue';
 import Projects from './components/pages/Projects.vue';
+import ProjectDetail from './components/pages/ProjectDetail.vue';
 
 import Error404 from './components/pages/Error404.vue';
 
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/progetti',
       name: 'projects',
       component: Projects
+    },
+    {
+      path: '/dettaglio-progetto/:slug',
+      name: 'projectDetail',
+      component: ProjectDetail
     },
 
 

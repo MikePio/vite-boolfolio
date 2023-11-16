@@ -32,6 +32,7 @@ export default {
       //* collegamento all'url dell'api salvata nello store
       // console.log(store.apiUrl); // restituisce l'url salvato nello store nella console
       
+      //! aggiungere obbligatoriamente un loader perché, ad esempio, se richiamo this.project.name prima che venga effettuata la chiamata api si genera un errore 
       //* per il caricamento/l'apparizione del loader
       this.loaded = false;
 
@@ -123,7 +124,7 @@ export default {
   <div class="container-inner mx-auto">
     <h2 class="text-center mb-4">Progetti</h2>
 
-    <div class="d-flex flex-column align-items-center justify-content-center">
+    <div v-if="loaded" class="d-flex flex-column align-items-center justify-content-center">
       <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <h3 class="text-center mb-3">Tipologie</h3>
