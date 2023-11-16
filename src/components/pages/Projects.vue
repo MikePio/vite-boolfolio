@@ -22,7 +22,7 @@ export default {
       // last_page:null,
 
       //* per il caricamento/l'apparizione del loader
-      loaded: false
+      // loaded: false // non più utile perché inserito nello store
     }
   },
 
@@ -34,7 +34,7 @@ export default {
       
       //! aggiungere obbligatoriamente un loader perché, ad esempio, se richiamo this.project.name prima che venga effettuata la chiamata api si genera un errore 
       //* per il caricamento/l'apparizione del loader
-      this.loaded = false;
+      store.loaded = false;
 
       //* chiamata Api per restituire tutti i progetti salvati nel db della repo laravel-api
       axios.get(endpoint)
@@ -74,7 +74,10 @@ export default {
           store.technologies = results.data.technologies;
 
           //* per far scomparire il loader
-          this.loaded = true;
+          store.loaded = true;
+
+          //* per far scomparire il paginate della ricerca e far comparire quello di default
+          store.showPaginateForSearch = false;
       });
       
     },
@@ -124,7 +127,7 @@ export default {
   <div class="container-inner mx-auto">
     <h2 class="text-center mb-4">Progetti</h2>
 
-    <div v-if="loaded" class="d-flex flex-column align-items-center justify-content-center">
+    <div v-if="store.loaded" class="d-flex flex-column align-items-center justify-content-center">
       <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
         <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
           <h3 class="text-center mb-3">Tipologie</h3>
@@ -183,10 +186,10 @@ export default {
       <!-- </li> -->
     <!-- </ul> -->
 
-    <Loader v-if="!loaded"/>
+    <Loader v-if="!store.loaded"/>
     
 <!-- //* stampa le card -->
-    <div v-if="loaded" class="container d-flex flex-wrap align-items-center justify-content-center my-4">
+    <div v-if="store.loaded" class="container d-flex flex-wrap align-items-center justify-content-center my-4">
       <ProjectCard 
         v-for="project in store.projects" 
         :key="project.id" 
@@ -194,11 +197,21 @@ export default {
       />
     </div>
 
-    <div v-if="loaded" class="d-flex flex-column align-items-center justify-content-center">
+    <!-- paginate che compare di default / SENZA la ricerca dei progetti -->
+    <div v-if="store.loaded && !store.showPaginateForSearch" id="paginate-default" class="d-flex flex-column align-items-center justify-content-center">
       <div>
         <button @click="getApi(store.first_page_url)" :disabled="store.current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
         <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>
         <button @click="getApi(store.last_page_url)" :disabled="store.current_page == store.last_page" class="btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
+      </div>
+    </div>
+
+    <!-- paginate che compare DOPO la ricerca dei progetti -->
+    <div v-if="store.loaded && store.showPaginateForSearch" id="paginate-search" class="d-flex flex-column align-items-center justify-content-center">
+      <div>
+        <button @click="store.getApiSearchPaginate(store.first_page_url)" :disabled="store.current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
+        <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="store.getApiSearchPaginate(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>
+        <button @click="store.getApiSearchPaginate(store.last_page_url)" :disabled="store.current_page == store.last_page" class="btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
       </div>
     </div>
   

@@ -6,14 +6,16 @@ export default {
   name: 'SearchBar',
   data(){
     return{
-      toSearch: '',
+      // toSearch: '',
+      store
+      
     }
   },
   methods:{
-    getApi(){
+    getApiSearch(){
       //! aggiungere obbligatoriamente un loader perché, ad esempio, se richiamo this.project.name prima che venga effettuata la chiamata api si genera un errore 
-      store.loaded = false;
-      axios.get(store.apiUrl + 'projects/search/' + this.toSearch)
+      store.loaded = true;
+      axios.get(store.apiUrl + 'projects/search/' + store.toSearch)
         .then(result => {
           store.projects = result.data.data;
           store.links = result.data.links;
@@ -22,10 +24,16 @@ export default {
           store.current_page = result.data.current_page;
           store.last_page = result.data.last_page;
           store.loaded = true;
-          this.toSearch = '';
+          store.toSearch = '';
+          store.showPaginateForSearch = true
         });
-
     },
+    redirectToProjects() {
+      this.$router.push('/progetti'); //* this.$router è un'istanza fornita da Vue Router (Vue Router gestisce la navigazione all'interno di un'applicazione Vue) 
+    },
+
+
+
   },
 
   }
@@ -33,15 +41,20 @@ export default {
 
 <template>
   <div class="container-inner d-flex" style="height: 33px">
-    <!-- input per la ricerca dei progetti per nome -->
-    <input
-      class="form-control me-2"
-      v-model.trim="toSearch"
-      placeholder="Cerca un progetto"
-      type="text"
-      @keyup.enter="getApi"
-    >
-    <button @click="getApi" class="btn btn-primary me-3 d-flex justify-content-center align-items-center"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+    <!-- form utilizzato per reindirizzare alla pagina projects -->
+    <!--//* @submit.prevent="redirectToProjects" nel form impedisce il ricaricamento della pagina quando viene inviato e, allo stesso tempo, chiama la funzione redirectToProjects -->
+    <form class="d-flex" @submit.prevent="redirectToProjects"> 
+      <!-- input per la ricerca dei progetti per nome -->
+      <input
+        class="form-control me-2"
+        v-model.trim="store.toSearch"
+        placeholder="Cerca un progetto"
+        type="text"
+        @keyup.enter="getApiSearch"
+      >
+      <button type="submit" @click="getApiSearch" class="btn btn-primary me-3 d-flex justify-content-center align-items-center"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
 
   </div>
   
