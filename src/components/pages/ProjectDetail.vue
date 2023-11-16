@@ -76,7 +76,7 @@ export default {
       <!-- slug -->
       <!-- <h2 v-if="loaded" class="mb-4 text-center">{{ this.$route.params.slug }}</h2> -->
 
-      <div v-if="loaded" class="d-flex flex-column align-items-center justify-content-center">
+      <div v-if="loaded" class="d-flex flex-column">
         <div class="d-flex flex-column d-flex justify-content-center align-items-center">
           <!-- le immagini sono ottenute facendo un //* controllo lato server (backend) cioè nel controller -->
           <img :src="project.image_path" :alt="project.image_original_name">

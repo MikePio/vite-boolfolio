@@ -1,6 +1,13 @@
 <script>
+import SearchBar from "./SearchBar.vue"
+
 export default {
   name: 'Header',
+
+  components:{  
+    SearchBar,
+  },
+
   data(){
     return{
 
@@ -13,7 +20,7 @@ export default {
 <template>
 <header class="bg-dark" style="max-height: 165px;">
 
-  <nav class="px-5" style="background-color: rgba(0, 0, 0, 0.2); height: 60px; max-height: 60px;">
+  <nav class="px-5 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2); height: 60px; max-height: 60px;">
     <ul>
       <li>
         <router-link :to="{name: 'home'}">Home</router-link>
@@ -33,6 +40,9 @@ export default {
         <router-link :to="{name: 'contacts'}">Contatti</router-link>
       </li>
     </ul>
+    <div class="d-flex justify-content-between align-items-center text-white">
+      <SearchBar/>
+    </div>
   </nav>
 
   <div class="d-flex align-items-center justify-content-center text-white" style="height: 90px; max-height: 90px;">
