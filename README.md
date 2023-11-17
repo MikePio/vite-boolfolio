@@ -106,11 +106,23 @@ Al click di un bottone per il tipo o per le tecnologie, nell’elenco dei proget
 ---------------------------------------
 # Router vue 2 - Vue show
 
-## **Descrizione esercizio attuale da svolgere**
+## **Descrizione esercizio precedente**
 Aggiungere alla navigazione con Vue anche la rotta che accetta lo slug come parametro dinamico e la relativa API del dettaglio dell’elemento cliccato
 ### BONUS
 Piccolo motore di ricerca per nome
 
+---------------------------------------
+# Laravel - Vue: API MAIL
+
+## **Descrizione esercizio attuale da svolgere**
+Riprodurre tutto il flusso dell’invio della email dal form della pagina di contatti.
+
+Effettuare la registrazione al servizio mailtrap.io e configurare correttamente il progetto.
+
+Gestire il feedback da dare all’utente (success/errors) tramite API.
+
+---------------------------------------
+# `Fine Consegne`
 ---------------------------------------
 
 # **Passaggi**
