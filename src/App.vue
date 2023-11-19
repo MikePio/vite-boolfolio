@@ -42,6 +42,7 @@ export default {
 body{
   // todo da eliminare provvisorio
   // background-color: #4338CA;  
+  overflow-x: hidden;
 }
 
 //* transizioni quando si passa da una pagina all'altra

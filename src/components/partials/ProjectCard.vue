@@ -43,14 +43,14 @@ export default {
 </script>
 
 <template>
-      <div class="card-custom shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+      <div class="card-custom shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4">
         <router-link :to="{ name: 'projectDetail', params:{ slug: project.slug } }">
-          <div class="d-flex">
-            <div class="d-flex flex-column d-flex justify-content-center align-items-center">
+          <div class="d-flex flex-column flex-md-row">
+            <div class="card-img-custom d-flex flex-column justify-content-center align-items-center">
                 <img 
                 :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
                 :alt="project.name"
-                class="rounded-start" style="object-fit: cover; height: 230px; width: 280px;">
+                >
                 <!-- //* funziona il placeholder statico  -->
                 <!-- src='../../assets/img/placeholder-img.png' -->
             </div>
@@ -92,47 +92,98 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
-.badge-type{
-  // background-color: #1A1E21;
-  // background-color: #212529;
-  background-color: #272c31;
-  // background-color: #4338CA;
-}
+  .badge-type{
+    // background-color: #1A1E21;
+    // background-color: #212529;
+    background-color: #272c31;
+    // background-color: #4338CA;
+  }
 
-.badge-technology{
-  background-color:#bcbcbc;
-  // background-color: lightgray;
-}
+  .badge-technology{
+    background-color:#bcbcbc;
+    // background-color: lightgray;
+  }
 
-a{
-  text-decoration: none !important;
-  color: inherit; // colore ereditato
-  // stesso colore di
-  // color: #212529;
-  &:hover{
+  a{
     text-decoration: none !important;
     color: inherit; // colore ereditato
     // stesso colore di
     // color: #212529;
-  }
-}
-
-.card-custom{
-  // transition: all .3s ease;
-  transition: transform 0.5s ease;
-  &:hover{
-    transform: scale(1.1);
-    //* per ingrandire l'immagine verticalmente all'hover
-    transition: transform 0.8s ease;
-    img{
-      // transform: scaleY(1.1);
-      // oppure
-      transform: scale(1.05);
-      border-radius: 5px !important;
-      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    &:hover{
+      text-decoration: none !important;
+      color: inherit; // colore ereditato
+      // stesso colore di
+      // color: #212529;
     }
   }
-}
 
+  .card-img-custom{
+    height: 252px;
+    max-height: 252px;
+  }
+
+  img{
+    
+    object-fit: cover;
+    width: 300px;
+    height: 252px;
+
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }
+
+  .card-custom{
+
+    width: 300px;
+    max-width: 300px;
+    height: 505px;
+    max-height: 505px;
+
+    // transition: all .3s ease;
+    transition: transform 0.5s ease;
+    &:hover{
+      transform: scale(1.1);
+      //* per ingrandire l'immagine verticalmente all'hover
+      transition: transform 0.8s ease;
+      img{
+        // transform: scaleY(1.1);
+        // oppure
+        transform: scale(1.05);
+        border-radius: 5px !important;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      }
+    }
+  }
+
+  // da 678px / dal tablet/md in sù
+  @media screen and (min-width: 768px) {
+
+    .card-img-custom{
+      height: auto;
+      max-height: none;
+    }
+
+    img{
+
+      min-height: unset;
+      height: 230px;
+      // max-height: 230px;
+      min-height: unset;
+      width: 280px;
+      // max-width: 280px;
+
+      border-top-right-radius: 0rem;
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+
+    .card-custom {
+      width: 505px;
+      max-width: 505px;
+      height: 232px;
+      max-height: 232px;
+    }
+
+  }
 
 </style>

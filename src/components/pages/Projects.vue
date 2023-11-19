@@ -199,19 +199,23 @@ export default {
 
     <!-- paginate che compare di default / SENZA la ricerca dei progetti -->
     <div v-if="store.loaded && !store.showPaginateForSearch" id="paginate-default" class="d-flex flex-column align-items-center justify-content-center">
-      <div>
-        <button @click="getApi(store.first_page_url)" :disabled="store.current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
-        <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>
-        <button @click="getApi(store.last_page_url)" :disabled="store.current_page == store.last_page" class="btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
+      <div class="d-flex flex-column flex-md-row">
+        <button @click="getApi(store.first_page_url)" :disabled="store.current_page == 1" class="first-pagination-btn btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
+        <div class="d-flex">
+          <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="getApi(link.url)" :disabled="link.active || !link.url" class="btn-pagination btn btn-dark me-2 mt-4 pb-2" ></button>
+        </div>
+        <button @click="getApi(store.last_page_url)" :disabled="store.current_page == store.last_page" class="last-pagination-btn btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
       </div>
     </div>
 
     <!-- paginate che compare DOPO la ricerca dei progetti -->
     <div v-if="store.loaded && store.showPaginateForSearch" id="paginate-search" class="d-flex flex-column align-items-center justify-content-center">
-      <div>
-        <button @click="store.getApiSearchPaginate(store.first_page_url)" :disabled="store.current_page == 1" class="btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
-        <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="store.getApiSearchPaginate(link.url)" :disabled="link.active || !link.url" class="btn btn-dark me-2 mt-4 pb-2" ></button>
-        <button @click="store.getApiSearchPaginate(store.last_page_url)" :disabled="store.current_page == store.last_page" class="btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
+      <div class="d-flex flex-column flex-md-row">
+        <button @click="store.getApiSearchPaginate(store.first_page_url)" :disabled="store.current_page == 1" class="first-pagination-btn btn btn-dark me-2 mt-4 pb-2">|&lt;</button>
+          <div class="d-flex">
+            <button v-for="(link, index) in store.links" :key="index" v-html="link.label" @click="store.getApiSearchPaginate(link.url)" :disabled="link.active || !link.url" class="btn-pagination btn btn-dark me-2 mt-4 pb-2" ></button>
+          </div>
+        <button @click="store.getApiSearchPaginate(store.last_page_url)" :disabled="store.current_page == store.last_page" class="last-pagination-btn btn btn-dark me-2 mt-4 pb-2">&gt;|</button>
       </div>
     </div>
   
@@ -241,10 +245,6 @@ export default {
   }
 }
 
-.search-card{
-  
-}
-
 .mp-type-tech-container{
 
   // max-width: 335px;
@@ -261,16 +261,29 @@ export default {
   border-top: 1px solid #ccc;
 }
 
+.first-pagination-btn::after {
+  content: ' First';
+}
 
-// todo per sistemare le card in verticale
-// todo sistemare i buttons della paginazione
-// fino a 678px / al tablet/md
+.last-pagination-btn::before {
+  content: 'Last ';
+}
+
+.btn-pagination {
+
+  // max-width: 90px;
+  max-height: 40px;
+  // font-size: auto;
+  font-size: 0.8rem;
+}
+
+// da 0px fino a 678px / al tablet/md
 @media screen and (max-width: 678px) {
 
 
 }
 
-// da 678px / dal tablet/md
+// da 678px in sù / dal tablet/md
 @media screen and (min-width: 768px) {
 
   .search-card {
@@ -295,6 +308,14 @@ export default {
 
     border-top: none;
     border-left: 1px solid #ccc;
+  }
+
+  .first-pagination-btn::after {
+    content: none;
+  }
+
+  .last-pagination-btn::before {
+    content: none;
   }
 }
 
