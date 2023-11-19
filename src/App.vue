@@ -23,7 +23,7 @@ export default {
 <template>
   <div>
     <Header/>
-    <main style="min-height: calc(100vh - 60px - 90px - 150px); max-width: 90%;" class="p-5 mx-auto" >
+    <main style="min-height: calc(100vh - 60px - 90px - 150px); max-width: 90%;" class="p-md-5 py-5 mx-auto">
       <!-- //* router con le transizioni di quando si passa da una pagina all'altra -->
       <router-view v-slot="{ Component, route }">
         <transition name="fade" mode="out-in">

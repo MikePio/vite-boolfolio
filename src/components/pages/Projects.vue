@@ -128,8 +128,8 @@ export default {
     <h2 class="text-center mb-4">Progetti</h2>
 
     <div v-if="store.loaded" class="d-flex flex-column align-items-center justify-content-center">
-      <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-wrap justify-content-center align-items-center shadow" style="max-width: 1010px;">
-        <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+      <div class="mp-type-tech-container rounded-2 overflow-hidden d-flex flex-column flex-md-row justify-content-center align-items-center shadow">
+        <div class="search-card search-card-types py-5 px-3 bg-white text-black p-md-2 py-md-5 p-lg-3 d-flex flex-column justify-content-start">
           <h3 class="text-center mb-3">Tipologie</h3>
           <div class="d-flex flex-wrap justify-content-center mx-3">
             <button @click="getApi(store.apiUrl + 'projects')" class="btn badge d-inline-block badge-type text-center mb-1 me-1">
@@ -143,7 +143,7 @@ export default {
             </button>
           </div>
         </div>
-        <div class="bg-white border border-grey text-black p-2" style="width: 505px; max-width: 505px; height: 232px; max-height: 232px">
+        <div class="search-card search-card-technologies py-5 px-3 bg-white text-black p-md-2 py-md-5 p-lg-3 d-flex flex-column justify-content-start">
           <h3 class="text-center">Tecnologie</h3>
             <div class="d-flex flex-wrap justify-content-center mx-3">
               <button @click="getApi(store.apiUrl + 'projects')" class="btn badge d-inline-block badge-technology text-center mb-1 me-1">
@@ -235,17 +235,100 @@ export default {
 .badge-technology{
   background-color:#bcbcbc;
   // background-color: lightgray;
-      transition: all .3s;
+  transition: all .3s;
   &:hover{
     border: #272c31 1px solid;
   }
 }
 
-@media (max-width: 1229px) {
-  .mp-type-tech-container {
-    width: 505px;
-  }
+.search-card{
+  
+}
+
+.mp-type-tech-container{
+
+  // max-width: 335px;
+  max-width: 455px;
+}
+
+.search-card-types{
+
+  border-bottom: 1px solid #ccc;
+}
+
+.search-card-technologies{
+
+  border-top: 1px solid #ccc;
 }
 
 
+// todo per sistemare le card in verticale
+// todo sistemare i buttons della paginazione
+// fino a 678px / al tablet/md
+@media screen and (max-width: 678px) {
+
+
+}
+
+// da 678px / dal tablet/md
+@media screen and (min-width: 768px) {
+
+  .search-card {
+    min-width: 300px !important;
+    max-width: 300px !important;
+
+    min-height: 232px;
+  }
+
+  .mp-type-tech-container {
+    // max-width: 1010px !important;
+    max-width: 768px !important;
+  }
+
+  .search-card-types{
+    
+    border-bottom: none;
+    border-right: 1px solid #ccc;
+  }
+
+  .search-card-technologies{
+
+    border-top: none;
+    border-left: 1px solid #ccc;
+  }
+}
+
+@media screen and (min-width: 678px) and (max-width: 1229px) {
+  // .search-card {
+  //   width: 505px;
+  // }
+
+
+}
+
+@media screen and (min-width: 992px) {
+  
+  .search-card {
+    width: 850px !important;
+    max-width: 850px !important;
+  }
+
+  .mp-type-tech-container {
+    max-width: 950px !important;
+  }
+}
+
+@media screen and (min-width: 1229px) {
+
+  .search-card {
+
+    width: 505px !important;
+    min-width: 505px !important;
+  }
+
+  .mp-type-tech-container {
+    max-width: 1010px !important;
+  }
+
+}
 </style>
