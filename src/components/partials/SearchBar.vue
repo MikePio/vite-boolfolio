@@ -53,7 +53,7 @@ export default {
         type="text"
         @keyup.enter="getApiSearch"
       >
-      <button type="submit" @click="getApiSearch" class="btn btn-primary me-3 d-flex justify-content-center align-items-center"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button type="submit" @click="getApiSearch" class="btn btn-primary d-flex justify-content-center align-items-center"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 
   </div>

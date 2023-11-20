@@ -1,5 +1,6 @@
 <script>
 import SearchBar from "./SearchBar.vue"
+import { store } from "../../data/store/store"
 
 export default {
   name: 'Header',
@@ -10,7 +11,16 @@ export default {
 
   data(){
     return{
+      store,
+      // showSidebar: false,
 
+    }
+  },
+
+  methods: {
+    toggleSidebar() {
+      store.showSidebar = !store.showSidebar;
+      // console.log(store.showSidebar);
     }
   }
 
@@ -19,23 +29,21 @@ export default {
 
 <template>
 <header class="bg-dark" style="max-height: 165px;">
+  
+  <nav class="px-2 px-sm-5 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2); height: 60px; max-height: 60px;">
+    <!-- //* compare da 576px in giù  -->
+    <div class="side-toggle-btn my-auto me-auto">
+      <button class="btn-dark-c" @click.prevent="toggleSidebar()"><i class="fa fa-bars"></i></button>
+    </div>
 
-  <nav class="px-5 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2); height: 60px; max-height: 60px;">
-    <ul>
+  <!-- //* compare sopra i 576px  -->
+    <ul class="nav-list">
       <li>
         <router-link :to="{name: 'home'}">Home</router-link>
       </li>
       <li>
         <router-link :to="{name: 'projects'}">Progetti</router-link>
       </li>
-      <!-- 
-      <li>
-        <router-link :to="{name: 'types'}">Tipi</router-link>
-      </li>
-      <li>
-        <router-link :to="{name: 'technologies'}">Tecnologie</router-link>
-      </li>
-      -->
       <li>
         <router-link :to="{name: 'contacts'}">Contatti</router-link>
       </li>
@@ -58,6 +66,9 @@ export default {
 @use '../../scss/main.scss' as *;
   header{
     nav{
+      .side-toggle-btn{
+        display: none;
+      }
       ul{
         list-style: none;
         height: 100%;
@@ -84,4 +95,35 @@ export default {
     }
   }
 
+.btn-dark-c{
+  // background-color: #212529 !important;
+  background-color: #1A1E21 !important;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+// da 0px fino a 576px
+@media screen and (max-width: 576px) {
+    header{
+      nav{
+        .side-toggle-btn{
+          display: block;
+          }
+        ul{
+          display: none;
+        }
+      }
+    }
+
+}
 </style>

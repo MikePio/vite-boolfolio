@@ -31,6 +31,8 @@ export const store = reactive({
   //* per far scomparire il paginate della ricerca e far comparire quello di default
   showPaginateForSearch: false,
   toSearch: '',
+  // sidebar
+  showSidebar: false,
 
   getApiSearchPaginate(pageNumber){
     //! aggiungere obbligatoriamente un loader perché, ad esempio, se richiamo this.project.name prima che venga effettuata la chiamata api si genera un errore 
