@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .rounded-2{
-    border: 0.5px solid rgba(128, 128, 128, 0.5);
+    border: 0.5px solid rgba(128, 128, 128, 0.245);
 }
 
 @media screen and (min-width: 992px) {

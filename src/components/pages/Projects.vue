@@ -195,6 +195,7 @@ export default {
         :key="project.id" 
         :project="project"
       />
+      <h2 v-if="store.projects.length == 0" class="m-5" >Nessun Progetto Trovato</h2>
     </div>
 
     <!-- paginate che compare di default / SENZA la ricerca dei progetti -->
@@ -249,6 +250,7 @@ export default {
 
   // max-width: 335px;
   max-width: 455px;
+  border: 0.5px solid rgba(128, 128, 128, 0.245);
 }
 
 .search-card-types{
