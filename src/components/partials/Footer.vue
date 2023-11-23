@@ -32,7 +32,7 @@ export default {
                 href="https://www.instagram.com/michelepiopilla/" role="button"><i class="fab fa-instagram"></i></a>
 
             <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="www.linkedin.com/in/michele-pilla-963668281" role="button"><i
+            <a class="btn btn-outline-light btn-floating m-1 rounded-circle" href="https://www.linkedin.com/in/michele-pilla" role="button"><i
                     class="fab fa-linkedin-in"></i></a>
 
             <!-- Github -->

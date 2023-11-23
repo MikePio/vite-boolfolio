@@ -31,12 +31,12 @@ export default {
 <header class="bg-dark" style="max-height: 165px;">
   
   <nav class="px-2 px-sm-5 d-flex justify-content-between" style="background-color: rgba(0, 0, 0, 0.2); height: 60px; max-height: 60px;">
-    <!-- //* compare da 576px in giù  -->
+    <!-- //* compare la sidebar da 576px in giù  -->
     <div class="side-toggle-btn my-auto me-auto">
       <button class="btn-dark-c" @click.prevent="toggleSidebar()"><i class="fa fa-bars"></i></button>
     </div>
 
-  <!-- //* compare sopra i 576px  -->
+    <!-- //* compaiono i link sopra i 576px  -->
     <ul class="nav-list">
       <li>
         <router-link :to="{name: 'home'}">Home</router-link>
