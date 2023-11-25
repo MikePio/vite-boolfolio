@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-    <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-center" style=" max-width: 90%;"> -->
+    <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-start" style=" max-width: 90%;"> -->
     <!-- oppure con mx-auto -->
     <div class="container-inner mx-auto">
 

@@ -46,11 +46,19 @@ export default {
       <div class="card-custom shadow bg-white border border-grey lg-overflow-hidden rounded-2 text-black my-3 ms-4 me-4">
         <router-link :to="{ name: 'projectDetail', params:{ slug: project.slug } }">
           <div class="d-flex flex-column flex-md-row">
-            <div class="card-img-custom d-flex flex-column justify-content-center align-items-center">
+            <div class="card-img-custom d-flex flex-column justify-content-center align-items-center">                
+                <!-- //* soluzione @error con vue -->
                 <img 
                 :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
                 :alt="project.name"
+                @error="$event.target.src=`src/assets/img/placeholder-img.png`"
                 >
+                <!-- //* soluzione onerror con javascript puro -->
+                <!-- <img 
+                :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
+                :alt="project.name"
+                onerror="this.src=`src/assets/img/placeholder-img.png`"
+                > -->
                 <!-- //* funziona il placeholder statico  -->
                 <!-- src='../../assets/img/placeholder-img.png' -->
             </div>

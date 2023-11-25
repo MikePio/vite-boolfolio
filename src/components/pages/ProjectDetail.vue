@@ -68,7 +68,7 @@ export default {
 </script>
 
 <template>
-  <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-center" style=" max-width: 90%;"> -->
+  <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-start" style=" max-width: 90%;"> -->
   <!-- oppure con mx-auto -->
   <div class="container-inner mx-auto">
 
@@ -81,10 +81,18 @@ export default {
           <!-- le immagini sono ottenute facendo un //* controllo lato server (backend) cioè nel controller -->
           <img :src="project.image_path" :alt="project.image_original_name">
           <!-- le immagini sono ottenute facendo un //* controllo in vue (lato frontend) -->
+          <!-- //* soluzione @error con vue -->
           <!-- <img 
           :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
           :alt="project.name"
+          @error="$event.target.src=`src/assets/img/placeholder-img.png`"
           class="rounded-start" style="object-fit: cover; height: 230px; width: 280px;"> -->
+          <!-- //* soluzione onerror con javascript puro -->
+          <!-- <img 
+          :src="project.image_path ? `http://127.0.0.1:8000/storage/${project.image_path}` : `src/assets/img/placeholder-img.png`"
+          :alt="project.name"
+          onerror="this.src=`src/assets/img/placeholder-img.png`"
+          > -->
           <!-- //* funziona il placeholder statico  -->
           <!-- src='../../assets/img/placeholder-img.png' -->
 

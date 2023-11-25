@@ -122,7 +122,7 @@ export default {
 
 <template>
 
-  <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-center"> -->
+  <!-- <div class="container-inner d-flex flex-column align-items-center justify-content-start"> -->
   <!-- oppure con mx-auto -->
   <div class="container-inner mx-auto">
     <h2 class="text-center mb-4">Progetti</h2>
